@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Nicolas Conte",
+    "classifications": [
+        "Web",
+        "API"
+    ],
+    "name": "Pomelo Template API",
+    "identity": "pomelo-api",
+    "shortName": "pomelo-api",
+    "tags": {
+        "language": "C#",
+        "type": "project"
+    },
+    "preferNameDirectory": true,
+    "sourceName": "Pomelo.Template.API",
+    "sources": [
+        {
+            "modifiers": [
+                {
+                    "exclude": [
+                        "bin",
+                        "obj",
+                        ".git/**",
+                        ".vs/**",
+                        ".vscode/**",
+                        ".idea/**"
+                    ]
+                }
+            ]
+        }
+    ]
+}
