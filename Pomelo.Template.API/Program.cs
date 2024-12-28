@@ -12,6 +12,8 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.RegisterOptions(builder.Configuration);
 
+builder.Services.AddDatabase(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
