@@ -10,7 +10,7 @@ A .NET API template using Vertical slice architecture / Screaming architecture, 
 #### **Install the template**
 1. To install the template, run the following command:
    ```bash
-   dotnet new --install Pomelo.Template.API::{version}
+   dotnet new --install Pomelo.Template::{version}
    ```
 2. This will install the template from NuGet.org.
 
