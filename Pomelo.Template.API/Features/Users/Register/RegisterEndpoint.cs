@@ -1,11 +1,10 @@
 ﻿using FastEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Pomelo.Template.API.Contracts.Requests;
 
 namespace Pomelo.Template.API.Features.Users.Register;
 
-public class RegisterEndpoint : Endpoint< RegisterUserRequest, Results< Ok<Guid>, BadRequest<string>>>
+public class RegisterEndpoint : Endpoint<RegisterRequest>
 {
     private readonly ISender _mediator;
 
@@ -20,20 +19,20 @@ public class RegisterEndpoint : Endpoint< RegisterUserRequest, Results< Ok<Guid>
         AllowAnonymous();
     }
     
-    public override async Task<Results<Ok<Guid>, BadRequest<string>>> HandleAsync(RegisterUserRequest request, CancellationToken cancellationToken)
+    public override async Task HandleAsync(RegisterRequest request, CancellationToken cancellationToken)
     {
         var command = MapRequestToCommand(request);
         var result = await _mediator.Send(command, cancellationToken);
         
         if (result.IsFailure)
         {
-            return TypedResults.BadRequest(result.Error.Message);
+            await SendAsync(result.Error.Message, StatusCodes.Status400BadRequest, cancellationToken);
         }
 
-        return TypedResults.Ok(result.Value);
+        await SendOkAsync(result.Value, cancellationToken);
     }
     
-    private RegisterCommand MapRequestToCommand(RegisterUserRequest request)
+    private RegisterCommand MapRequestToCommand(RegisterRequest request)
     {
         return new RegisterCommand(request.Username, request.Password, request.Email);
     }

@@ -1,10 +1,10 @@
-﻿using FluentValidation;
+﻿using FastEndpoints;
 
 namespace Pomelo.Template.API.Features.Users.Login;
 
-public class LoginCommandValidator : AbstractValidator<LoginCommand>
+public class LoginRequestValidator : Validator<LoginRequest>
 {
-    public LoginCommandValidator()
+    public LoginRequestValidator()
     {
         RuleFor(x => x.Username)
             .NotEmpty();

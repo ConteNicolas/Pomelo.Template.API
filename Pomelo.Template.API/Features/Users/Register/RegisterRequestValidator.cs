@@ -1,10 +1,11 @@
-﻿using FluentValidation;
+﻿using FastEndpoints;
+using FluentValidation;
 
 namespace Pomelo.Template.API.Features.Users.Register;
 
-public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
+public class RegisterRequestValidator : Validator<RegisterRequest>
 {
-    public RegisterCommandValidator()
+    public RegisterRequestValidator()
     {
         RuleFor(x => x.Username)
             .NotEmpty();
